@@ -6,7 +6,7 @@ RUN conda install cython matplotlib pandas
 RUN pip install magine
 
 USER root
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y git build-essential
 USER jovyan
 
 RUN git clone https://github.com/lolab-vu/magine
