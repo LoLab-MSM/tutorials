@@ -12,9 +12,10 @@ RUN pip install magine
 
 
 # old api version of simplepso
-RUN pip install simplepso==2.1
-
+RUN pip install simplepso==2.1.1
 
 RUN git clone https://github.com/lolab-vu/magine
 RUN python magine/magine/copy_sample_dbs.py
 RUN mkdir pysb && cd pysb && git clone https://github.com/lolab-vu/pysb-tutorials
+
+RUN pip install git+git://github.com/lolab-vu/earm
