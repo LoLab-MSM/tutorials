@@ -1,14 +1,20 @@
 FROM jupyterhub/singleuser
 
+USER root
+RUN apt-get update && apt-get install -y git build-essential graphviz libgts-dev
+
+USER jovyan
 RUN conda install -c alubbock pysb
+RUN conda install -c conda-forge python-igraph
 RUN conda install cython matplotlib pandas
 
 RUN pip install magine
 
-USER root
-RUN apt-get update && apt-get install -y git build-essential
-USER jovyan
+
+# old api version of simplepso
+RUN pip install simplepso==2.1
+
 
 RUN git clone https://github.com/lolab-vu/magine
-RUN python magine/scripts/download_databases.py
+RUN python magine/magine/copy_sample_dbs.py
 RUN mkdir pysb && cd pysb && git clone https://github.com/lolab-vu/pysb-tutorials
